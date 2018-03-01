@@ -26,5 +26,14 @@ object Main {
     SolverInterface.step(ConnectFour())(Runner(1000.millis).parallel(4))
     pause()
 
+    import advanced.Simultaneously._
+    val CombinedGame = simultaneously(
+      ConnectFour(),
+      simultaneously(
+        TicTacToe4,
+        TicTacToe()
+      )
+    )
+    SolverInterface.step(CombinedGame)(Runner(3000.millis).parallel())
   }
 }
